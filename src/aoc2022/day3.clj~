@@ -1,3 +1,0 @@
-(ns aoc2022.day3
-  (:require [aoc2022.utils :refer [read-input-as-string-vector]]
-            [clojure.string :as str]))
