@@ -45,3 +45,33 @@
     (->> visibility
          (filter #(= % true))
          count)))
+
+(defn viewing-distance
+  [el direction n]
+  (cond
+    (= direction []) n
+    (< (first direction) el) (recur el (rest direction) (inc n))
+    :else (inc n)))
+
+(defn scenic-score
+  [i j]
+  (let [el (nth (nth G (dec i)) (dec j))
+        left (into [] (reverse (sub-row i 1 (dec j))))
+        right (sub-row i (inc j) N)
+        up (into [] (reverse (sub-col j 1 (dec i))))
+        down (sub-col j (inc i) M)]
+    (->> [up left right down]
+         (map #(viewing-distance el % 0))
+         (reduce *))))
+
+(defn solution2
+  []
+  (let [scenic-scores (for [i (range M)
+                            j (range N)]
+                        (scenic-score (inc i) (inc j)))]
+    (reduce max scenic-scores)))
+
+(defn -main
+  []
+  (printf "Solution 1: %s\n", (solution1))
+  (printf "Solution 2: %s\n", (solution2)))
