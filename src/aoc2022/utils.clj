@@ -11,3 +11,6 @@
   (-> file
       read-input-as-string
       str/split-lines))
+
+(defn transpose [m]
+  (apply mapv vector m))

@@ -1,0 +1,5 @@
+(ns aoc2022.day8
+  (:require [aoc2022.utils :refer [read-input-as-string-vector]]
+            [clojure.string :as str]))
+
+(def input (read-input-as-string-vector "day8-test.txt"))
